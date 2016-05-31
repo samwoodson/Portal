@@ -1,11 +1,11 @@
-defmodule Portal.door do
+defmodule Portal.Door do
 
   def start_link(color) do
     Agent.start_link(fn -> [] end, name: color)
   end
 
   def get(door) do
-    Agent.get(door, fn list-> list.end)
+    Agent.get(door, fn list-> list end)
   end
 
   def push(door, value) do
