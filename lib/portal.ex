@@ -27,9 +27,17 @@ defmodule Portal do
   end
 
   def push_right(portal) do
-    case Portal.Door.pop(portal.left) do
-      :error  -> :ok
-      {:ok, h} -> Portal.Door.push(portal.right, h)
+    push(portal, portal.left, portal.right)
+  end
+
+  def push_left(portal) do
+    push(portal, portal.right, portal.left)
+  end
+
+  def push(portal, origin, target) do
+    case Portal.Door.pop(origin) do
+      :error -> :ok
+      {:ok, h} -> Portal.Door.push(target, h)
     end
 
     portal
